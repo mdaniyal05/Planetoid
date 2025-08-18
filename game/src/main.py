@@ -9,6 +9,7 @@ clock = pygame.time.Clock()
 
 def main():
     running = True
+    dt = 0
 
     while running:
         for event in pygame.event.get():
@@ -19,7 +20,7 @@ def main():
 
         pygame.display.flip()
 
-        clock.tick(FPS)
+        dt = clock.tick(FPS) / 1000
 
     pygame.quit()
 
