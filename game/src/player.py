@@ -3,7 +3,7 @@ from circle_shape import Circle_Shape
 from constants import PLAYER_RADIUS
 
 
-class Player(pygame.sprite.Sprite, Circle_Shape):
+class Player(Circle_Shape):
     def __init__(self, x, y):
         Circle_Shape.__init__(self, x, y, PLAYER_RADIUS)
 
@@ -17,3 +17,6 @@ class Player(pygame.sprite.Sprite, Circle_Shape):
         b = self.position - forward * self.radius - right
         c = self.position - forward * self.radius + right
         return [a, b, c]
+
+    def draw(self, screen):
+        pygame.draw.polygon(screen, "red", self.triangle(), 3)
