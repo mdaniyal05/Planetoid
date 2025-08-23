@@ -29,6 +29,8 @@ def main():
 
         dt = clock.tick(FPS) / 1000
 
+        player.update(dt)
+
     pygame.quit()
 
 
