@@ -7,6 +7,8 @@ class Player(Circle_Shape):
     def __init__(self, x, y):
         Circle_Shape.__init__(self, x, y, PLAYER_RADIUS)
 
+        containers = ()
+
         self.rotation = 0
 
     def triangle(self):
