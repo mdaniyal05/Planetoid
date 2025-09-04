@@ -4,10 +4,10 @@ from constants import PLAYER_RADIUS, PLAYER_ROTATE_SPEED, PLAYER_SPEED
 
 
 class Player(Circle_Shape):
+    containers = ()
+
     def __init__(self, x, y):
         Circle_Shape.__init__(self, x, y, PLAYER_RADIUS)
-
-        containers = ()
 
         self.rotation = 0
 
