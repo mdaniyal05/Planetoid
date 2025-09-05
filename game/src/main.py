@@ -1,4 +1,5 @@
 import pygame
+import time
 from constants import *
 from player import Player
 from planet import Planet
@@ -9,6 +10,8 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
+text_font = pygame.font.SysFont("monospace", 30, bold=True)
+
 x = SCREEN_WIDTH / 2
 y = SCREEN_HEIGHT / 2
 
@@ -16,12 +19,14 @@ updatable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
 planets = pygame.sprite.Group()
 
-text_font = pygame.font.SysFont("Arial", 30)
-
 
 def draw_text(text, font, color, x, y):
-    img = font.render(text, True, color)
-    screen.blit(img, (x, y))
+    msg = font.render(text, True, color)
+
+    textRect = msg.get_rect()
+    textRect.center = (x, y)
+
+    screen.blit(msg, textRect)
 
 
 def main():
@@ -54,6 +59,9 @@ def main():
 
             if check:
                 draw_text("GAME OVER!", text_font, (250, 250, 250), x, y)
+                pygame.display.update()
+                time.sleep(3)
+                running = False
 
         pygame.display.flip()
 
