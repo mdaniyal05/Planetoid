@@ -58,6 +58,14 @@ def main():
         updatable.update(dt)
 
         for planet in planets:
+            for bullet in bullets:
+                check = bullet.check_collision(planet)
+
+                if check:
+                    bullet.kill()
+                    planet.kill()
+
+        for planet in planets:
             check = player.check_collision(planet)
 
             if check:
