@@ -3,6 +3,7 @@ import time
 from constants import *
 from player import Player
 from planet import Planet
+from bullet import Bullet
 from planet_field import Planet_Field
 
 pygame.init()
@@ -18,15 +19,16 @@ y = SCREEN_HEIGHT / 2
 updatable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
 planets = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
 
 
 def draw_text(text, font, color, x, y):
     msg = font.render(text, True, color)
 
-    textRect = msg.get_rect()
-    textRect.center = (x, y)
+    text_rect = msg.get_rect()
+    text_rect.center = (x, y)
 
-    screen.blit(msg, textRect)
+    screen.blit(msg, text_rect)
 
 
 def main():
@@ -36,6 +38,7 @@ def main():
     Player.containers = (updatable, drawable)
     Planet.containers = (planets, updatable, drawable)
     Planet_Field.containers = (updatable)
+    Bullet.containers = (bullets, updatable, drawable)
 
     player = Player(x, y)
     Planet_Field()
