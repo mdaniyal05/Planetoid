@@ -63,7 +63,7 @@ def main():
 
                 if check:
                     bullet.kill()
-                    planet.kill()
+                    planet.split()
 
         for planet in planets:
             check = player.check_collision(planet)
