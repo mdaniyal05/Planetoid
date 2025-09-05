@@ -16,6 +16,13 @@ updatable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
 planets = pygame.sprite.Group()
 
+text_font = pygame.font.SysFont("Arial", 30)
+
+
+def draw_text(text, font, color, x, y):
+    img = font.render(text, True, color)
+    screen.blit(img, (x, y))
+
 
 def main():
     running = True
@@ -25,7 +32,7 @@ def main():
     Planet.containers = (planets, updatable, drawable)
     Planet_Field.containers = (updatable)
 
-    Player(x, y)
+    player = Player(x, y)
     Planet_Field()
 
     while running:
@@ -33,16 +40,22 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        screen.fill("white")
+        screen.fill("black")
 
         for obj in drawable:
             obj.draw(screen)
 
-        pygame.display.flip()
-
         dt = clock.tick(FPS) / 1000
 
         updatable.update(dt)
+
+        for planet in planets:
+            check = player.check_collision(planet)
+
+            if check:
+                draw_text("GAME OVER!", text_font, (250, 250, 250), x, y)
+
+        pygame.display.flip()
 
     pygame.quit()
 
